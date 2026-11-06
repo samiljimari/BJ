@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "BJ Counter Bridge",
+  "version": "0.2.0",
+  "description": "Advice only: copies WebSocket frames from game frames you enable to the local counter server and shows its overlay. Never places bets or makes decisions.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "bj-counter@localhost",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": { "required": ["none"] }
+    }
+  },
+  "minimum_chrome_version": "121",
+  "permissions": ["storage", "scripting", "webNavigation"],
+  "host_permissions": ["http://127.0.0.1/*", "http://localhost/*"],
+  "optional_host_permissions": ["*://*/*"],
+  "background": {
+    "scripts": ["background.js"],
+    "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "action": { "default_popup": "popup.html", "default_title": "BJ Counter (advice only)" },
+  "commands": {
+    "toggle-overlay": {
+      "suggested_key": { "default": "Alt+Shift+B" },
+      "description": "Show / hide the counter overlay"
+    }
+  }
+}

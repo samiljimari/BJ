@@ -1,0 +1,23 @@
+{
+  "_status": "UNVERIFIED defaults. Fill in from the in-game Help/Rules panel (project notes section 2) and re-run tools/house_edge.py - it should land near the published RTP 99.47% (house edge ~0.53%).",
+  "_sources": "8 decks, S17, BJ 3:2, Six Card Charlie, auto-stand on 21, insurance offered, split only equal ranks: operator rules pages for Evolution Infinite Blackjack. Double/split/peek details: not published there - doc example values used.",
+  "name": "infinite_blackjack",
+  "decks": 8,
+  "dealer_hits_soft_17": false,
+  "blackjack_pays": 1.5,
+  "double_on": "any_two",
+  "double_after_split": true,
+  "max_splits": 1,
+  "resplit_aces": false,
+  "hit_split_aces": false,
+  "split_requires_same_rank": true,
+  "surrender": "none",
+  "dealer_peek": true,
+  "no_peek_lose_all": false,
+  "six_card_charlie": true,
+  "auto_stand_21": true,
+  "insurance": true,
+  "dealer_always_draws": true,
+  "penetration": 0.75,
+  "burn_cards": 0
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BJ Counter</title>
+<style>
+  :root { --bg:#0f1418; --fg:#e8edf2; --mut:#8b98a5; --line:#26313a; --good:#2fbf71; --bad:#e5484d; --acc:#3b9eff; }
+  body { margin:0; width:360px; background:var(--bg); color:var(--fg); font:13px/1.4 system-ui,"Segoe UI",sans-serif; }
+  header { display:flex; align-items:center; gap:8px; padding:10px 12px; border-bottom:1px solid var(--line); }
+  header b { flex:1; }
+  .dot { width:9px; height:9px; border-radius:50%; background:var(--bad); }
+  .dot.up { background:var(--good); }
+  section { padding:10px 12px; border-bottom:1px solid var(--line); }
+  h2 { font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--mut); margin:0 0 6px; font-weight:600; }
+  .item { display:flex; align-items:center; gap:6px; padding:3px 0; }
+  .item code { flex:1; font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .mut { color:var(--mut); font-size:12px; }
+  button, select, input { font:12px system-ui,sans-serif; background:#232c33; color:var(--fg); border:1px solid #33414c;
+    border-radius:5px; padding:3px 8px; }
+  button { cursor:pointer; }
+  button:hover { background:#2c3740; }
+  button.on { border-color:var(--good); color:var(--good); }
+  button.primary { border-color:var(--acc); color:var(--acc); }
+  .row { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+  input { width:100%; box-sizing:border-box; }
+  .rec { color:var(--bad); }
+</style>
+</head>
+<body>
+<header><span id="dot" class="dot"></span><b>BJ Counter</b><span class="mut">advice only</span><span id="srv" class="mut">server: ?</span></header>
+
+<section>
+  <h2>Frames in this tab</h2>
+  <div id="frames" class="mut">Loading…</div>
+  <div class="mut" style="margin-top:6px">Enable the <b>game</b> frame's origin, then reload the tab. Find it in DevTools → Network (filter WS) if unsure.
+    In Firefox the permission prompt may close this popup - reopen it, the origin is enabled anyway.</div>
+</section>
+
+<section>
+  <h2>Enabled origins</h2>
+  <div id="origins" class="mut">none</div>
+  <div class="row" style="margin-top:6px"><button id="reload" class="primary">Reload tab</button></div>
+</section>
+
+<section>
+  <h2>Counter</h2>
+  <div id="status" class="mut">–</div>
+  <div class="row" style="margin-top:6px">
+    <button id="rec">Record frames</button>
+    <button id="reset">New shoe</button>
+    <button id="undo">Undo</button>
+  </div>
+</section>
+
+<section>
+  <h2>Overlay</h2>
+  <div class="row">
+    <select id="mode">
+      <option value="game">In the game frame</option>
+      <option value="top">In the top page</option>
+      <option value="off">Off</option>
+    </select>
+    <button id="toggle">Show / hide</button>
+    <span class="mut">Alt+Shift+B</span>
+  </div>
+</section>
+
+<section>
+  <h2>Server</h2>
+  <div class="row"><input id="url" spellcheck="false"><button id="save">Save &amp; reconnect</button></div>
+</section>
+<script src="popup.js"></script>
+</body>
+</html>

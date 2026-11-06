@@ -1,0 +1,15 @@
+{
+  "_comment": "Bet ramp for the overlay signal. steps: bet 'units' when floor(TC) >= 'tc'; below the first step = sit out. base_edge / edge_per_tc only drive the 'est. edge' display - take them from the simulator's fitted line. Pass with: python -m server.main --ramp rules/bet_ramp.json",
+  "steps": [
+    {"tc": 1, "units": 1},
+    {"tc": 2, "units": 2},
+    {"tc": 3, "units": 4},
+    {"tc": 4, "units": 6},
+    {"tc": 5, "units": 8}
+  ],
+  "base_edge": -0.0053,
+  "edge_per_tc": 0.005,
+  "floor_tc": true,
+  "unit": 0.5,
+  "currency": "\u20ac"
+}

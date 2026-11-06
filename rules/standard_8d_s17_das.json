@@ -1,0 +1,20 @@
+{
+  "_status": "Reference rule set used to validate the engine against the well-known 8-deck S17 DAS basic strategy chart. Not a real table.",
+  "name": "standard_8d_s17_das",
+  "decks": 8,
+  "dealer_hits_soft_17": false,
+  "blackjack_pays": 1.5,
+  "double_on": "any_two",
+  "double_after_split": true,
+  "max_splits": 3,
+  "resplit_aces": false,
+  "hit_split_aces": false,
+  "split_requires_same_rank": false,
+  "surrender": "none",
+  "dealer_peek": true,
+  "six_card_charlie": false,
+  "auto_stand_21": true,
+  "insurance": true,
+  "dealer_always_draws": false,
+  "penetration": 0.75
+}

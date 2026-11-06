@@ -1,0 +1,21 @@
+[
+  {"hand": "_comment", "up": "-", "action": "-", "index": 0, "when": "Illustrious-18 style multi-deck Hi-Lo indices from the project notes (section 6). Cross-check only - regenerate for the real rules with tools/gen_indices.py. 'when': '>=' means do 'action' when TC >= index; '<' means do 'action' when TC < index."},
+  {"hand": "insurance", "up": "A", "action": "insurance", "index": 3, "when": ">="},
+  {"hand": "hard 16", "up": "T", "action": "stand", "index": 0, "when": ">="},
+  {"hand": "hard 15", "up": "T", "action": "stand", "index": 4, "when": ">="},
+  {"hand": "pair T", "up": "5", "action": "split", "index": 5, "when": ">="},
+  {"hand": "pair T", "up": "6", "action": "split", "index": 4, "when": ">="},
+  {"hand": "hard 10", "up": "T", "action": "double", "index": 4, "when": ">="},
+  {"hand": "hard 12", "up": "3", "action": "stand", "index": 2, "when": ">="},
+  {"hand": "hard 12", "up": "2", "action": "stand", "index": 3, "when": ">="},
+  {"hand": "hard 11", "up": "A", "action": "double", "index": 1, "when": ">="},
+  {"hand": "hard 9", "up": "2", "action": "double", "index": 1, "when": ">="},
+  {"hand": "hard 10", "up": "A", "action": "double", "index": 4, "when": ">="},
+  {"hand": "hard 9", "up": "7", "action": "double", "index": 3, "when": ">="},
+  {"hand": "hard 16", "up": "9", "action": "stand", "index": 5, "when": ">="},
+  {"hand": "hard 13", "up": "2", "action": "hit", "index": -1, "when": "<"},
+  {"hand": "hard 12", "up": "4", "action": "hit", "index": 0, "when": "<"},
+  {"hand": "hard 12", "up": "5", "action": "hit", "index": -2, "when": "<"},
+  {"hand": "hard 12", "up": "6", "action": "hit", "index": -1, "when": "<"},
+  {"hand": "hard 13", "up": "3", "action": "hit", "index": -2, "when": "<"}
+]

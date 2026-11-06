@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BJ Counter</title>
+<style>
+  :root { --bg:#0b0f12; --card:#0f1418; --fg:#e8edf2; --mut:#8b98a5; --line:#26313a; --good:#2fbf71; --bad:#e5484d; --acc:#3b9eff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  header { display:flex; gap:12px; align-items:center; padding:12px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  header h1 { font-size:16px; margin:0; }
+  header .mut { font-size:12.5px; }
+  a { color:var(--acc); }
+  .dot { width:9px; height:9px; border-radius:50%; background:var(--bad); display:inline-block; }
+  .dot.up { background:var(--good); }
+  main { display:grid; grid-template-columns:minmax(300px,380px) 1fr; gap:16px; padding:16px; max-width:1100px; }
+  @media (max-width:760px) { main { grid-template-columns:1fr; } }
+  .box { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px; }
+  .box h2 { font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--mut); margin:0 0 8px; font-weight:600; }
+  .mut { color:var(--mut); }
+  .keys { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
+  button { font:600 15px system-ui,sans-serif; background:#1a2229; color:var(--fg); border:1px solid #33414c; border-radius:7px;
+    padding:9px 0; cursor:pointer; }
+  button:hover { background:#24303a; }
+  button.sm { font-size:13px; padding:6px 10px; font-weight:500; }
+  .row { display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-top:8px; }
+  .seg button { font-size:12.5px; padding:5px 10px; font-weight:500; }
+  .seg button.on { border-color:var(--acc); color:var(--acc); }
+  kbd { font:11px ui-monospace,monospace; background:#1a2229; border:1px solid #33414c; border-radius:4px; padding:0 4px; }
+  .help { font-size:12px; color:var(--mut); margin-top:10px; line-height:1.7; }
+  .comp { display:grid; grid-template-columns:repeat(10,1fr); gap:4px; align-items:end; height:90px; margin-top:4px; }
+  .bar { background:#3b9eff55; border-top:2px solid var(--acc); border-radius:3px 3px 0 0; position:relative; }
+  .bar.rich { background:#2fbf7155; border-color:var(--good); }
+  .bar.poor { background:#e5484d44; border-color:var(--bad); }
+  .lbls { display:grid; grid-template-columns:repeat(10,1fr); gap:4px; font-size:11.5px; text-align:center; color:var(--mut); }
+  .sockets { font:12px ui-monospace,monospace; color:var(--mut); word-break:break-all; }
+  #panel .bjp { background:transparent; }
+</style>
+</head>
+<body>
+<header>
+  <h1>BJ Counter</h1>
+  <span class="mut" title="Nothing is automated: you place every bet and make every decision.">advice only</span>
+  <span><span id="dot" class="dot"></span> <span id="conn" class="mut">connecting…</span></span>
+  <span id="rules" class="mut"></span>
+  <span class="mut"><a href="/api/strategy" target="_blank">strategy chart</a> · <a href="/api/state" target="_blank">raw state</a></span>
+</header>
+<main>
+  <div class="box"><h2>Live</h2><div id="panel"></div></div>
+  <div>
+    <div class="box">
+      <h2>Manual input</h2>
+      <div class="keys" id="keys"></div>
+      <div class="row seg" id="targets">
+        <span class="mut" style="font-size:12px">Next card to:</span>
+        <button data-t="auto" class="on">Auto</button><button data-t="player">Player</button>
+        <button data-t="dealer">Dealer</button><button data-t="other">Count only</button>
+      </div>
+      <div class="row">
+        <button class="sm" data-d="stand">Stand <kbd>S</kbd></button>
+        <button class="sm" data-d="double">Double <kbd>D</kbd></button>
+        <button class="sm" data-d="split">Split <kbd>P</kbd></button>
+        <button class="sm" data-d="surrender">Surrender <kbd>R</kbd></button>
+        <button class="sm" data-d="insurance">Insurance <kbd>I</kbd></button>
+      </div>
+      <div class="row">
+        <button class="sm" id="newround">New round <kbd>N</kbd></button>
+        <button class="sm" id="undo">Undo <kbd>⌫</kbd></button>
+        <button class="sm" id="newshoe">New shoe <kbd>Shift+N</kbd></button>
+      </div>
+      <div class="help">
+        Cards: <kbd>A</kbd>/<kbd>1</kbd> <kbd>2</kbd>…<kbd>9</kbd> <kbd>T</kbd>/<kbd>0</kbd>/<kbd>J</kbd>/<kbd>Q</kbd>/<kbd>K</kbd>.
+        Auto target follows the deal order player → dealer → player → hits → dealer.
+        One-off overrides: <kbd>Z</kbd> next card to dealer, <kbd>X</kbd> next card count-only (other players, burns).
+        Press <b>New shoe</b> at every shuffle.
+      </div>
+    </div>
+    <div class="box" style="margin-top:16px">
+      <h2>Remaining composition (vs. full-shoe share)</h2>
+      <div class="comp" id="comp"></div>
+      <div class="lbls" id="complbl"></div>
+    </div>
+    <div class="box" style="margin-top:16px">
+      <h2>Game sockets seen by the extension</h2>
+      <div class="sockets" id="sockets">none</div>
+    </div>
+  </div>
+</main>
+<script src="/panel_render.js"></script>
+<script src="/static/dashboard.js"></script>
+</body>
+</html>
